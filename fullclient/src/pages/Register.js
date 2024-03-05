@@ -1,12 +1,14 @@
 // import logo from '../../public/';
 import '../../src/App.css';
 import {  react,useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 function App() {
   const [Name,setName] = useState("");
   const [email,setemail] = useState("");
   const [pwd,setpwd] = useState("");
+  const navigate = useNavigate();
 
   async function registeruser(e) {
     e.preventDefault();
@@ -19,6 +21,9 @@ function App() {
     })
 
     const data  = await resp.json();
+    if(data.status === "ok"){
+      navigate('/Login');
+    }
     console.log('data :>> ', data);
   }
   return (
